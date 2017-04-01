@@ -1,0 +1,160 @@
+body 
+	{
+			font-size: 18px;
+			line-height: 24px;
+			background: #222222;
+			color: #ffffff;
+			font-family: "Microsoft JhengHei", "Georgia", FreeSerif, serif;
+			padding-left: 30px;
+			
+	}
+button
+	{
+			font-size: 20px;
+			font-family: "Microsoft JhengHei", "Georgia", FreeSerif, serif;
+			width:15%;
+			display: block; 
+			margin: 10px 20px 6px 20px; 
+	}
+
+	
+		ul{
+			font-size: 14px;
+		}
+		#container {
+		
+			width: 85%;
+			margin: 50px 0 50px 50px;
+
+			
+			}
+		p, li {
+			margin: 16px 0 16px 0;
+			width: 80%;
+			}
+			p.break {
+				margin-top: 35px;
+				}
+	
+		h1, h2, h3, h4, h5, h6 {
+			margin-top: 40px;
+			display:inline-block;
+
+			
+			}
+		b.header {
+			font-size: 24px;
+			}
+		span.alias {
+			font-size: 16px;
+			font-style: italic;
+			margin-left: 20px;
+			}
+		table {
+			margin: 16px 0; padding: 0;
+			}
+			tr, td {
+				margin: 0; padding: 0;
+				}
+				td {
+					padding: 9px 15px 9px 0;
+					}
+					td.definition {
+						line-height: 18px;
+						font-size: 16px;
+						}
+		code, pre, tt {
+			font-family: Consolas, "Lucida Console", monospace;
+			font-size: 14px;
+			line-height: 18px;
+			color: #eee;
+			}
+		code {
+			margin-left: 20px;
+			}
+		pre {
+			font-size: 14px;
+			padding: 2px 0 2px 12px;
+			border-left: 6px solid hotpink;
+			margin: 0px 0 10px;
+			width: 150px;
+			}
+		li pre {
+			padding: 0;
+			border-left: 0;
+			margin: 6px 0 6px 0;
+			}
+		#diagram {
+			margin: 20px 0 0 0;
+			}
+	
+		
+		img {
+			  margin-left:49%;
+			}
+
+	
+
+		.aligncenter { 
+			clear: both; 
+			display: block; 
+			margin: 10px 20px 6px 20px; 
+			} 
+		textarea
+			{
+			
+			border:6px SteelBlue;
+			background-color:#444444;
+			color:#ffffff;
+			height:100px;
+			width:100%;
+			font-size: 18px;
+			font-family: "Microsoft JhengHei";
+		
+			
+			display: block; 
+			margin: 10px 20px 6px 20px; 
+			
+			}
+		button
+		{
+			font-size: 20px;
+			font-family: "Microsoft JhengHei", "Georgia", FreeSerif, serif;
+			width:15%;
+			display: block; 
+			margin: 10px 20px 6px 20px; 
+		}
+		#btn
+		{
+			font-size: 20px;
+			font-family: "Microsoft JhengHei", "Georgia", FreeSerif, serif;
+			width:15%;
+			display: block; 
+			margin: 10px 20px 6px 20px;
+			color:#000000; 
+		}
+		.echart
+		{
+	    	
+			border:3px SteelBlue;
+			background-color:#444444;
+			color:#ffffff;
+	    	width: 100%;
+	    	height:400px;	
+	    	
+			display: block; 
+			margin: 10px 20px 6px 20px; 
+		}
+		#botdiv
+		{
+	    	
+			border:3px SteelBlue;
+			background-color:#333333;
+			color:#ffffff;
+			width: 100%;
+	    	height:200px;	
+	    
+	       	display: block; 
+			margin: 10px 20px 6px 20px; 
+			
+		}

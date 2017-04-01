@@ -1,0 +1,12 @@
+
+
+tensorflow/theano
+keras
+
+[optional]
+#image crawler for image search engines  https://github.com/wolfhong/pisces
+pisces
+
+#web Serving 
+flask
+flask-uploads

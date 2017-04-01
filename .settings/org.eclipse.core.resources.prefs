@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//ImageCrawler/PiscesCrawler.py=utf-8
+encoding//Model/CNN.py=utf-8
+encoding//Model/CNN_S.py=utf-8
+encoding//Model/predictor.py=utf-8
+encoding//Util/config.py=utf-8
+encoding//Util/file_process.py=utf-8
+encoding//Util/prep_data.py=utf-8
+encoding//WebServ/classifier.py=utf-8
+encoding//WebServ/clf_service.py=utf-8
+encoding/perf_eval.py=utf-8
+encoding/predict_demo.py=utf-8
+encoding/train.py=utf-8

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.preimage.js"></script>
+	
+	<!-- bootstrap progess bar  -->
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<script src="static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/default.css">
+	<script>
+
+	$(document).ready(function()
+	{
+		//https://github.com/dzysyak/jQuery.preview
+		$('.file').preimage();
+		//$('#prev_file1').html("<img src='static/img/facetemplate.png' height=280>");
+		//$(".file").attr("value",{{ picurl}} );
+	});
+
+	</script>
+
+<meta charset=utf-8 />
+<title>jQuery file upload</title>
+
+
+<style>
+	.prev_container{
+		overflow: auto;
+		height: 300px;
+	}
+
+	.prev_thumb{
+		margin: 10px;
+		height: 280px;
+	}
+	.mainarea {
+		position: absolute;
+    	top: 50%;
+    	left: 50%;
+    	transform: translate(-50%, -50%);
+	}	
+</style>
+</head>
+<body>
+	<header>
+     	<center>
+            <h1>Image Classification</h1>
+        </center>
+	</header>
+	<div class='mainarea'>
+		<form action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data">
+	
+			<input class="file" id="file1" type='file' multiple value="aaa"  name="media"/>
+			<div id="prev_file1"></div> 
+	
+			<div id='submit_btn'>
+				<input type = "submit" id='btn' >
+			</div>
+		</form>
+	
+	
+ 		<div class="progress" style="display: none;">
+    		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+        	0%
+    		</div>
+ 		</div>
+ 		<div class="resarea" id ='res' >
+    	
+ 		</div>
+ 	</div>
+</body>
+
+<script type="text/javascript">
+
+    $('form').on('submit', function (event) {
+    	// 显示 进度
+    	$("#res").html('<h2>'+ '分析中' + '</h2>')
+        
+    	// 显示进度条
+        $('.progress').css('display', 'block');
+        // 阻止元素发生默认的行为，此处用来阻止对表单的提交
+        event.preventDefault();
+        var formData = new FormData(this);
+        // jQuery Ajax 上传文件，关键在于设置：processData 和 contentType
+        $.ajax({
+            xhr: function () {
+                var xhr = new XMLHttpRequest();
+                xhr.upload.addEventListener('progress', function (e) {
+                    if (e.lengthComputable) {
+                        var percent = Math.round(e.loaded * 100 / e.total);
+                        $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+                    }
+                });
+                return xhr;
+            },
+            type: 'POST',
+            url: '/classify',
+            cache: false,
+            data: formData,
+            // 告诉 jQuery 不要去处理发送的数据
+            processData: false,
+            // 告诉 jQuery 不要去设置 Content-Type 请求头
+            // 因为这里是由 <form> 表单构造的 FormData 对象，且已经声明了属性 enctype="multipart/form-data"，所以设置为 false
+            contentType: false
+        }).done(function (res) {
+            //alert('上传成功!');
+            //$("#res").attr("src",{{ picurl}} );
+            console.log(res)
+            //console.log(res.v[3])
+            $("#res").html('<h2>'+ res.label+ '</h2>')
+         	//关闭进度条
+            $('.progress').css('display', 'none');
+        }).fail(function (res) {
+            alert('上传失败!');
+        });
+    });
+    
+</script>
+
+</html>
