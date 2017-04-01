@@ -3,7 +3,9 @@ Open Image Classification Framwork (OpenIC)
 
 A Framwork for Image Classification Web Services
 
-Note: This repository is unstable version. 
+Note: This repository is an unstable version. 
+
+
 The framework includes following modules :
 
 1.Image Crawler - Collecting image samples.
