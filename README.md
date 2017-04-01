@@ -3,6 +3,9 @@ Open Image Classification Framwork (OpenIC)
 
 A Framwork for Image Classification Web Services
 
+
+![arch](https://raw.githubusercontent.com/HCTsai/OpenIC/master/imgclf.png) 
+
 Note: This repository is an unstable version. 
 
 
@@ -15,4 +18,3 @@ The framework includes following modules :
 3.Model Validation Tools
 
 4.Model Serving by Flask (with a web fron-end.)
-
