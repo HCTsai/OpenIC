@@ -15,6 +15,8 @@ The framework includes following modules :
 
 2.Imange Classifier Traning - Traing classifier model by Keras (with theano/tensorflow)
 
-3.Model Validation Tools
+3.Model validation tools
 
-4.Model Serving by Flask (with a web fron-end.)
+4.Model serving by Flask 
+
+5.A demo Web page for reqesting classification service 
