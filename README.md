@@ -19,4 +19,4 @@ The framework includes following modules :
 
 4.Model serving tool (based on Flask). 
 
-5.A demo web page for reqesting classification service. 
+5.A demo web page. 
