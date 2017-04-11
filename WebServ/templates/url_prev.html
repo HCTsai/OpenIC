@@ -60,19 +60,22 @@
 	    
 	    <br>
         <br>
-		<form action="{{url_for('clf_upload')}}" method="POST" enctype="multipart/form-data" id='uploadform'>
-	
-			<input class="file" id="file1" type='file' name="media" onchange="selectFile(this);"/>
-			
-			<div id="prev_file1"></div> 
-			<!-- 
-				<div id='submit_btn'>
-					<input type = "submit" id='btn' >
-				</div>
-			 -->
+       
+		<form action="{{url_for('clf_url')}}" method="POST"  id='fileform'>
+			<input class="file" id="file1" type='file' name="media" onchange="selectFile(this);" />
+		</form>	
+		
+        <p>Image URL:</p>
+        <form action="{{url_for('clf_url')}}" method="POST" enctype="application/x-www-form-urlencoded" id='urlform'>
+        	<input class='url_input' id='urlinput' type="text" name="url" value= "http://tupian.enterdesk.com/2015/xu/08/06/3/9.jpg" required />
+       		<div id='submit_btn'>
+					<input type = "submit" id='btn' value = '分析URL' style ="width:100px;" onclick="updateimg();" />
+			</div>
 		</form>
-	
-	
+       	
+      
+		<div id="prev_file1"></div> 
+		
  		<div class="progress" style="display: none;">
     		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
         	0%
@@ -86,12 +89,24 @@
 </body>
 
 <script type="text/javascript">
-
+    
+    function updateimg(){
+    	
+    	url = $("#urlinput").val()
+     	tagstr = "<img src='" + url + "' height=380/>"
+     	
+     	$('#prev_file1').html(tagstr);
+     	//submitForm()
+    	//onsubmit()
+    	//$("#urlform").submit(); 
+     	console.log(url)
+    	return true
+    }
+    
     $('form').on('submit', function (event) {
-    	// 显示 进度
-    	$("#res").html('<h2>'+ '分析中' + '</h2>')
-        
-    	// 显示进度条
+    	// 显示 图
+    	
+        // 显示进度条
         $('.progress').css('display', 'block');
         // 阻止元素发生默认的行为，此处用来阻止对表单的提交
         event.preventDefault();
@@ -109,7 +124,7 @@
                 return xhr;
             },
             type: 'POST',
-            url: '{{url_for('clf_upload')}}',
+            url: '{{url_for('clf_url')}}',
             cache: false,
             data: formData,
             // 告诉 jQuery 不要去处理发送的数据
@@ -118,8 +133,8 @@
             // 因为这里是由 <form> 表单构造的 FormData 对象，且已经声明了属性 enctype="multipart/form-data"，所以设置为 false
             contentType: false
         }).done(function (res) {
-            //alert('上传成功!');
-            //$("#res").attr("src",{{ picurl}} );
+          
+            //$("#uppic").attr("src",{{ picurl}} );
             console.log(res)
             //console.log(res.v[3])
             $("#res").html('<center><h2>'+ '识别结果: ' + res.label+ '</h2></center>')
@@ -129,6 +144,7 @@
             alert('上传失败!');
         });
     });
+    
     function selectFile(input) {
         if (input.files && input.files[0]) {
            //show thumbnail 
@@ -137,7 +153,7 @@
         }
     }
     function submitForm(){
-    	$("#uploadform").submit(); 
+    	$("#fileform").submit(); 
     }
 </script>
 

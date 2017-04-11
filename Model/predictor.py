@@ -27,12 +27,13 @@ def predict_by_file(model,filepath):
 
 def predict_by_url(model,url):
     
+    #url to image
     import io
     from PIL import Image
     image_bytes = urlopen(url).read()
     data_stream = io.BytesIO(image_bytes)
     img = Image.open(data_stream)
-    
+    #
     #some file may not 24 bit color space 
     img = img.convert('RGB')
    

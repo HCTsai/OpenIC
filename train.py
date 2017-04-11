@@ -48,12 +48,12 @@ else:
 
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
-        rotation_range=4,
-        width_shift_range=0.05,  # 2017.03.24
-        height_shift_range=0.05, # 2017.03.24
+        rotation_range=1,
+        #width_shift_range=0.05,  # 2017.03.24
+        #height_shift_range=0.05, # 2017.03.24
         rescale=1./255,
         shear_range=0.1,
-        zoom_range=0.2,
+        zoom_range=0.1,
         horizontal_flip=True)
 
 
@@ -84,6 +84,7 @@ def ShowCurrentOutput() :
 
 run = 400000 
 for i in range(0, run):
+    
     print ('run: ',str(i))
     #
     model.fit_generator(

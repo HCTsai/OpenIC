@@ -45,36 +45,77 @@ from WebServ import classifier
 
 #load model in global
 classifier.load_model()
+#save upload files
+'''
+files = UploadSet('files', ALL)
+app.config['UPLOADS_DEFAULT_DEST'] = 'uploads'
+configure_uploads(app, files)
+'''
 
 
-@app.route('/classify', methods=['GET', 'POST'])
-def upload():
-    
+@app.route('/fileclf', methods=['GET', 'POST'])
+def clf_upload():
     #import uuid
     #temppic = 'static/' + str(uuid.uuid1())+ '.jpg'
+    
     if request.method == 'POST' and 'media' in request.files:
-        st = time.time()
-        
+       
         image_file = request.files['media']
+        #save files by flask_uploads
         #filename = files.save(image_file)
-        #data_stream = io.BytesIO(image_bytes)
-        img = Image.open(request.files['media']) #PIL Image open
-        #img = img.convert('RGB')
+        img = Image.open(image_file) #PIL Image open
+        #print ('file name: ' ,image_file.filename)
+        labeld, dist = classifier.GetClfResbyImg(img)       
        
-       
-        print ('file name: ' ,image_file.filename)
-              
-        labeldesc, distrib= classifier.GetClassifyResult(img)       
         r = {}
-        r['label'] = labeldesc
-        r['v'] = str(distrib)
+        r['label'] = labeld
+        r['v'] = str(dist)
         return jsonify(r)
         #return jsonify(label=labeldesc, v=str(p[0]))
     
     else :     
-        #return render_template('upload_jqprev.html')
-        return render_template('upload_loadimg.html')
+        return render_template('upload_jqprev.html')
+        #return render_template('upload_loadimg.html')
     #return render_template('upload.html') 
+
+@app.route('/urlclf', methods=['GET', 'POST'])
+def clf_url():
+    print (request.files)
+    print (request.form) 
+    if request.method == 'POST' and 'url' in request.form:
+        #get url string
+        url = request.form['url']
+        print ('usr_url: ', url)
+        labeld, dist = classifier.GetClfResbyUrl(url)       
+        
+        r = {}
+        r['label'] = labeld
+        r['v'] = str(dist)
+        return jsonify(r)
+    elif  request.method == 'POST' and 'media' in request.files :
+            
+        image_file = request.files['media']
+        #save files by flask_uploads
+        #filename = files.save(image_file)
+        img = Image.open(image_file) #PIL Image open
+        #print ('file name: ' ,image_file.filename)
+        labeld, dist = classifier.GetClfResbyImg(img)       
+        
+        r = {}
+        r['label'] = labeld
+        r['v'] = str(dist)
+        return jsonify(r)
+        
+    else :     
+        return render_template('url_prev.html')
+        #return render_template('upload_loadimg.html')
+    #return render_template('upload.html') 
+
+def ret_resp(labeld,dist):
+    r = {}
+    r['label'] = labeld
+    r['v'] = str(dist)
+    return jsonify(r)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

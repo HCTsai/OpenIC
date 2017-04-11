@@ -18,8 +18,8 @@ backendname = backend.backend()
 #graph = tf.get_default_graph()
 graph = None
 if( backendname == 'tensorflow') :
-    #import tensorflow as tf
-    #graph = tf.get_default_graph()
+    import tensorflow as tf
+    graph = tf.get_default_graph()
     pass
 
 model = None
@@ -59,10 +59,11 @@ def clf(img):
     print ('output layer: ' , str(p)) 
     print ('label:',config.cla[label])
     print ('Run Model Elapse(sec.): ',str(et-st))
+    #To-Do p[0] contains 'newline'
     return label , p[0]
         
 #cla = ['feather','coat','sweater','long','short','vest','swimsuit','naked']
-def GetClassifyResult(img):
+def GetClfResbyImg(img):
     
     label, dist = clf(img)
     
@@ -71,4 +72,21 @@ def GetClassifyResult(img):
     else :
         label = str(label)
     return label, dist
+
+def GetClfResbyUrl(url):
+    #url library
+    try:
+        from urllib2 import urlopen # Python2
+    except ImportError:
+        from urllib.request import urlopen# Python3
+        
+    #url to image
+    import io
+    from PIL import Image
+    image_bytes = urlopen(url).read()
+    data_stream = io.BytesIO(image_bytes)
+    img = Image.open(data_stream)
+    #TO-Do verify image    
+    #
+    return GetClfResbyImg(img)
     

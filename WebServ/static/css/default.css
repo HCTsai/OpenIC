@@ -37,7 +37,7 @@ button
 				}
 	
 		h1, h2, h3, h4, h5, h6 {
-			margin-top: 40px;
+			margin-top: 20px;
 			display:inline-block;
 
 			
@@ -90,7 +90,7 @@ button
 	
 		
 		img {
-			  margin-left:49%;
+			  margin-left:0%;
 			}
 
 	
@@ -116,6 +116,18 @@ button
 			margin: 10px 20px 6px 20px; 
 			
 			}
+		.url_input
+		{
+			border:6px SteelBlue;
+			background-color:#444444;
+			color:#ffffff;
+			height:30px;
+			width:800px;
+			font-size: 18px;
+			font-family: "Microsoft JhengHei";
+			display: block; 
+			
+		}	
 		button
 		{
 			font-size: 20px;

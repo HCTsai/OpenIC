@@ -25,20 +25,33 @@ for i in range(len(dirs)) :
     ans.append(i)
     answers.append(ans)
  
+tacc = 0
+tcount = 0 
+ 
 for i in range(len(dirs)) :
+    print ('directory:',root +'/' + dirs[i])
     
     st = time.time()
+    
     labels = predictor.predict_by_dir(model, root +'/' + dirs[i])
-    print (labels) 
+    tcount += len(labels)
+    
+    print (labels)
+    #for l in labels :
+        #print (config.cla_desc[l].decode('utf-8'), end=' ') 
+        #print (config.cla_desc[l].decode('utf-8')) 
+    
     acc = 0 
     for l in labels :
         if (l in answers[i]) :
             acc += 1 
     ar = float(acc) / len(labels)
     et = time.time()
-    print ('directory:',root +'/' + dirs[i])
+    
+    tacc += acc 
     print ('time elapse:', et - st)
     print ('acc/sample', acc, len(labels)) 
     print ('accuracy ratio:',ar)   
 
-     
+print ('t_acc/t_sample', tacc, tcount) 
+print ('accuracy ratio:',float(tacc)/tcount)   
